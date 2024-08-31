@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +16,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public static string playerName;
-    public TextMeshProUGUI inputPlayerName; 
+    public TextMeshProUGUI inputPlayerName;
     public static SaveData saveData;
     public TextMeshProUGUI highScoreText;
 
@@ -62,19 +61,12 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        if (Application.isEditor)
-        {
-            EditorApplication.ExitPlaymode();
-        }
-        else
-        {
-            Application.Quit();
-        }
+        Application.Quit();
     }
 
     public void SaveHighScore(int score)
     {
-        if (score <= saveData.highScore)
+        if (saveData != null && score <= saveData.highScore)
         {
             return;
         }
